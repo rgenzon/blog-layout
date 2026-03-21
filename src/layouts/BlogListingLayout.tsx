@@ -80,7 +80,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
       />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-background">
+      <section className="pt-8 pb-12 md:pt-12 md:pb-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="max-w-3xl">
             <span
