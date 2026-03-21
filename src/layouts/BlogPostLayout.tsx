@@ -101,7 +101,7 @@ export function BlogPostLayout({
 
       <article>
         {/* Hero */}
-        <header className="pt-32 pb-12 md:pt-40 md:pb-16 bg-background">
+        <header className="pt-8 pb-8 md:pt-12 md:pb-12 bg-background">
           <div className="max-w-4xl mx-auto px-4 md:px-8">
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-sm mb-8 text-muted-foreground">

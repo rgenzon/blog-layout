@@ -71,7 +71,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
       />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-background">
+      <section className="pt-8 pb-12 md:pt-12 md:pb-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="max-w-3xl">
             <span
@@ -113,7 +113,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
                 </p>
                 <a
                   href={cta.buttonUrl}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white font-semibold rounded-full text-sm transition-all duration-200 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 h-10 px-5 bg-white font-medium rounded-xl text-sm transition-all duration-200 hover:bg-white/90"
                   style={{ color: colors.primary }}
                 >
                   {cta.buttonText}
