@@ -12,8 +12,12 @@ export function BlogPostCTA({ config }: BlogPostCTAProps) {
   const isDark = theme === "dark";
   const ctaBg = isDark ? `${colors.primary}15` : `${colors.primary}10`;
 
+  const cssVars = {
+    "--blog-primary-light": `${colors.primary}30`,
+  } as React.CSSProperties;
+
   return (
-    <section className="my-16 rounded-2xl overflow-hidden" style={{ backgroundColor: ctaBg }}>
+    <section className="my-16 rounded-2xl overflow-hidden" style={{ backgroundColor: ctaBg, ...cssVars }}>
       <div className="p-8 md:p-12">
         {/* Header */}
         <div className="text-center mb-8">
@@ -50,7 +54,7 @@ export function BlogPostCTA({ config }: BlogPostCTAProps) {
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${
                 isDark
                   ? "bg-gray-800 text-gray-300 border border-gray-700"
-                  : "bg-white text-gray-700 border border-blue-100"
+                  : "bg-white text-gray-700 border border-[var(--blog-primary-light)]"
               }`}
             >
               <svg

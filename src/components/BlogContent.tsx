@@ -247,9 +247,9 @@ export function BlogContent({ content, config }: BlogContentProps) {
         <blockquote
           key={key++}
           className={`my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed ${
-            isDark ? "bg-white/5 text-gray-300" : "bg-blue-50/50 text-gray-700"
+            isDark ? "bg-white/5 text-gray-300" : "text-gray-700"
           }`}
-          style={{ borderLeft: `4px solid ${primary}` }}
+          style={{ borderLeft: `4px solid ${primary}`, ...(!isDark && { backgroundColor: `${primary}08` }) }}
         >
           {parseInline(text)}
         </blockquote>

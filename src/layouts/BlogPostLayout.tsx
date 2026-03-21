@@ -93,6 +93,10 @@ export function BlogPostLayout({
     "@graph": jsonLdGraph,
   };
 
+  const cssVars = {
+    "--blog-primary-light": `${colors.primary}30`,
+  } as React.CSSProperties;
+
   return (
     <>
       <script
@@ -100,7 +104,7 @@ export function BlogPostLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <article>
+      <article style={cssVars}>
         {/* Hero */}
         <header
           className="pt-32 pb-12 md:pt-40 md:pb-16"
@@ -255,7 +259,7 @@ export function BlogPostLayout({
                         className={`rounded-2xl border p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between ${
                           isDark
                             ? "border-gray-700 bg-gray-900 hover:border-gray-600"
-                            : "border-gray-200 bg-white hover:border-blue-200"
+                            : "border-gray-200 bg-white hover:border-[var(--blog-primary-light)]"
                         }`}
                       >
                         <span className="text-xs text-gray-400 uppercase tracking-wider">
@@ -285,7 +289,7 @@ export function BlogPostLayout({
                         className={`rounded-2xl border p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between text-right ${
                           isDark
                             ? "border-gray-700 bg-gray-900 hover:border-gray-600"
-                            : "border-gray-200 bg-white hover:border-blue-200"
+                            : "border-gray-200 bg-white hover:border-[var(--blog-primary-light)]"
                         }`}
                       >
                         <span className="text-xs text-gray-400 uppercase tracking-wider">

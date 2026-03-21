@@ -28,8 +28,12 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
   // Derive a light tint from primary for badges
   const badgeBg = isDark ? `${primary}20` : `${primary}15`;
 
+  const cssVars = {
+    "--blog-primary-light": `${primary}30`,
+  } as React.CSSProperties;
+
   return (
-    <div>
+    <div style={cssVars}>
       {/* Category Filter */}
       <div className="flex flex-wrap gap-2 mb-10">
         {["All", ...categories].map((cat) => (
@@ -73,7 +77,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
               className={`rounded-2xl border overflow-hidden hover:shadow-lg transition-all duration-300 ${
                 isDark
                   ? "border-gray-700 bg-gray-900 hover:border-gray-600"
-                  : "border-gray-200 bg-white hover:border-blue-200"
+                  : "border-gray-200 bg-white hover:border-[var(--blog-primary-light)]"
               }`}
             >
               <div className="h-72 w-full overflow-hidden">
@@ -145,7 +149,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
               className={`rounded-2xl border overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col ${
                 isDark
                   ? "border-gray-700 bg-gray-900 hover:border-gray-600"
-                  : "border-gray-200 bg-white hover:border-blue-200"
+                  : "border-gray-200 bg-white hover:border-[var(--blog-primary-light)]"
               }`}
             >
               <div className="h-48 w-full overflow-hidden">
