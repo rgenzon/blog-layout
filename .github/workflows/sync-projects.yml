@@ -1,0 +1,63 @@
+name: Sync Blog Template to All Projects
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - enzonmedia
+          - yardpal
+          - makrly
+          - statuskeep
+          - bannertrackr
+          - implementables
+          - mariaspetbnb
+          - trigglio
+          - pal-platform
+
+    steps:
+      - name: Checkout project repo
+        uses: actions/checkout@v4
+        with:
+          repository: rgenzon/${{ matrix.project }}
+          token: ${{ secrets.PROJECT_PUSH_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Update blog template
+        run: npm update @rg/blog-template
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet package-lock.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build to verify
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run build
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "chore: update @rg/blog-template to latest
+
+          Automated sync from blog-layout repo.
+
+          Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>"
+          git push
