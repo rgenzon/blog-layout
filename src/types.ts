@@ -17,6 +17,14 @@ export interface BlogConfig {
     buttonUrl: string;
     stats: Array<{ value: string; label: string }>;
     benefits: string[];
+    colors?: {
+      background: string;
+      foreground: string;
+      muted: string;
+      buttonBg: string;
+      buttonText: string;
+      buttonHoverBg?: string;
+    };
   };
   domain: string;
 }
