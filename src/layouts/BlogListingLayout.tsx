@@ -99,34 +99,36 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
             {/* Sidebar */}
             <aside className="space-y-8">
               {/* CTA Card */}
-              <div className="rounded-xl border border-border bg-card p-6 card-highlight shadow-sm shadow-black/5 dark:shadow-black/30 relative overflow-hidden">
-                {/* Dot pattern background */}
-                <div className="absolute inset-0 bg-dot-pattern [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black_20%,transparent_100%)]" />
-
+              <div
+                className="rounded-xl p-6 relative overflow-hidden"
+                style={{ backgroundColor: c.background }}
+              >
+                <div
+                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[200px] rounded-full opacity-[0.06] blur-3xl"
+                  style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.primaryDark})` }}
+                  aria-hidden="true"
+                />
                 <div className="relative z-10">
-                  <h3 className="text-lg font-extrabold mb-3 text-foreground tracking-tight">
+                  <h3
+                    className="text-lg font-bold mb-3 tracking-tight"
+                    style={{ color: c.foreground }}
+                  >
                     {cta.heading}
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                  <p
+                    className="text-sm mb-5 leading-relaxed"
+                    style={{ color: c.muted }}
+                  >
                     {cta.description}
                   </p>
                   <a
                     href={cta.buttonUrl}
-                    className="press-scale inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background font-semibold rounded-lg text-sm transition-all hover:opacity-90 shadow-lg shadow-foreground/10"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 font-semibold rounded-full text-sm transition-all hover:shadow-lg"
+                    style={{ backgroundColor: c.buttonBg, color: c.buttonText }}
                   >
                     {cta.buttonText}
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
                     </svg>
                   </a>
                 </div>
