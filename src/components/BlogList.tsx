@@ -45,18 +45,26 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
               activeCategory === cat
                 ? { backgroundColor: primary, color: "#fff" }
                 : {
-                    backgroundColor: isDark ? "#1f2937" : "#f1f5f9",
-                    color: isDark ? "#d1d5db" : "#475569",
+                    backgroundColor: isDark
+                      ? "var(--color-gray-800, #1f2937)"
+                      : "var(--color-gray-100, #f1f5f9)",
+                    color: isDark
+                      ? "var(--color-gray-300, #d1d5db)"
+                      : "var(--color-gray-600, #475569)",
                   }
             }
             onMouseEnter={(e) => {
               if (activeCategory !== cat) {
-                e.currentTarget.style.backgroundColor = isDark ? "#374151" : "#e2e8f0";
+                e.currentTarget.style.backgroundColor = isDark
+                  ? "var(--color-gray-700, #374151)"
+                  : "var(--color-gray-200, #e2e8f0)";
               }
             }}
             onMouseLeave={(e) => {
               if (activeCategory !== cat) {
-                e.currentTarget.style.backgroundColor = isDark ? "#1f2937" : "#f1f5f9";
+                e.currentTarget.style.backgroundColor = isDark
+                  ? "var(--color-gray-800, #1f2937)"
+                  : "var(--color-gray-100, #f1f5f9)";
               }
             }}
           >
