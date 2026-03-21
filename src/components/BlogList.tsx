@@ -13,7 +13,6 @@ interface BlogListProps {
 
 export function BlogList({ posts, categories, config }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState("All");
-  const isDark = config.theme === "dark";
   const primary = config.colors.primary;
   const primaryDark = config.colors.primaryDark;
 
@@ -26,47 +25,26 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
   const regularPosts = filteredPosts.filter((p) => !p.featured || p !== featuredPost);
 
   // Derive a light tint from primary for badges
-  const badgeBg = isDark ? `${primary}20` : `${primary}15`;
-
-  const cssVars = {
-    "--blog-primary-light": `${primary}30`,
-  } as React.CSSProperties;
+  const badgeBg = `${primary}20`;
 
   return (
-    <div style={cssVars}>
+    <div>
       {/* Category Filter */}
       <div className="flex flex-wrap gap-2 mb-10">
         {["All", ...categories].map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              activeCategory === cat
+                ? "text-white"
+                : "bg-muted text-muted-foreground hover:bg-accent"
+            }`}
             style={
               activeCategory === cat
-                ? { backgroundColor: primary, color: "#fff" }
-                : {
-                    backgroundColor: isDark
-                      ? "var(--color-gray-800, #1f2937)"
-                      : "var(--color-gray-100, #f1f5f9)",
-                    color: isDark
-                      ? "var(--color-gray-300, #d1d5db)"
-                      : "var(--color-gray-600, #475569)",
-                  }
+                ? { backgroundColor: primary }
+                : undefined
             }
-            onMouseEnter={(e) => {
-              if (activeCategory !== cat) {
-                e.currentTarget.style.backgroundColor = isDark
-                  ? "var(--color-gray-700, #374151)"
-                  : "var(--color-gray-200, #e2e8f0)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (activeCategory !== cat) {
-                e.currentTarget.style.backgroundColor = isDark
-                  ? "var(--color-gray-800, #1f2937)"
-                  : "var(--color-gray-100, #f1f5f9)";
-              }
-            }}
           >
             {cat}
           </button>
@@ -81,13 +59,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             href={`/blog/${featuredPost.slug}`}
             className="md:col-span-2 group block"
           >
-            <article
-              className={`rounded-2xl border overflow-hidden hover:shadow-lg transition-all duration-300 ${
-                isDark
-                  ? "border-gray-700 bg-gray-900 hover:border-gray-600"
-                  : "border-gray-200 bg-white hover:border-[var(--blog-primary-light)]"
-              }`}
-            >
+            <article className="rounded-2xl border border-border bg-card overflow-hidden hover:shadow-lg hover:border-input transition-all duration-300">
               <div className="h-72 w-full overflow-hidden">
                 {featuredPost.coverImage ? (
                   <img
@@ -124,17 +96,13 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
                     {featuredPost.category}
                   </span>
                 </div>
-                <h2
-                  className={`text-2xl md:text-3xl font-bold transition-colors mb-3 ${
-                    isDark ? "text-white" : "text-gray-900"
-                  }`}
-                >
+                <h2 className="text-2xl md:text-3xl font-bold transition-colors mb-3 text-foreground">
                   {featuredPost.title}
                 </h2>
-                <p className={isDark ? "text-gray-400 mb-4 line-clamp-2" : "text-gray-600 mb-4 line-clamp-2"}>
+                <p className="text-muted-foreground mb-4 line-clamp-2">
                   {featuredPost.description}
                 </p>
-                <div className={`flex items-center gap-4 text-sm ${isDark ? "text-gray-500" : "text-gray-500"}`}>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <span>{featuredPost.readingTime}</span>
                   <span>&middot;</span>
                   <time dateTime={featuredPost.publishedDate}>
@@ -153,13 +121,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             href={`/blog/${post.slug}`}
             className="group block"
           >
-            <article
-              className={`rounded-2xl border overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col ${
-                isDark
-                  ? "border-gray-700 bg-gray-900 hover:border-gray-600"
-                  : "border-gray-200 bg-white hover:border-[var(--blog-primary-light)]"
-              }`}
-            >
+            <article className="rounded-2xl border border-border bg-card overflow-hidden hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col">
               <div className="h-48 w-full overflow-hidden">
                 {post.coverImage ? (
                   <img
@@ -188,17 +150,13 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
                 >
                   {post.category}
                 </span>
-                <h3
-                  className={`text-lg font-bold transition-colors mb-2 ${
-                    isDark ? "text-white" : "text-gray-900"
-                  }`}
-                >
+                <h3 className="text-lg font-bold transition-colors mb-2 text-foreground">
                   {post.title}
                 </h3>
-                <p className={`text-sm mb-4 line-clamp-2 flex-1 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+                <p className="text-sm mb-4 line-clamp-2 flex-1 text-muted-foreground">
                   {post.description}
                 </p>
-                <div className={`flex items-center gap-4 text-sm ${isDark ? "text-gray-500" : "text-gray-500"}`}>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <span>{post.readingTime}</span>
                   <span>&middot;</span>
                   <time dateTime={post.publishedDate}>
@@ -214,7 +172,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
       {/* Empty State */}
       {filteredPosts.length === 0 && (
         <div className="text-center py-16">
-          <p className={isDark ? "text-gray-500 text-lg" : "text-gray-500 text-lg"}>
+          <p className="text-muted-foreground text-lg">
             No posts found in this category yet.
           </p>
         </div>

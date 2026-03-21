@@ -9,8 +9,7 @@ interface BlogListingLayoutProps {
 }
 
 export function BlogListingLayout({ posts, categories, config }: BlogListingLayoutProps) {
-  const { brand, colors, theme, domain, cta } = config;
-  const isDark = theme === "dark";
+  const { brand, colors, domain, cta } = config;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -62,7 +61,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
   };
 
   // Derive badge background
-  const badgeBg = isDark ? `${colors.primary}20` : `${colors.primary}15`;
+  const badgeBg = `${colors.primary}20`;
 
   return (
     <>
@@ -72,10 +71,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
       />
 
       {/* Hero */}
-      <section
-        className="pt-32 pb-16 md:pt-40 md:pb-20"
-        style={{ backgroundColor: colors.background }}
-      >
+      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="max-w-3xl">
             <span
@@ -84,11 +80,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
             >
               {brand.blogTitle}
             </span>
-            <h1
-              className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight ${
-                isDark ? "text-white" : "text-gray-900"
-              }`}
-            >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-foreground">
               {brand.tagline}
             </h1>
           </div>
@@ -96,7 +88,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
       </section>
 
       {/* Main Content */}
-      <section className="pb-20" style={{ backgroundColor: colors.background }}>
+      <section className="pb-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Posts Column */}
@@ -142,14 +134,8 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
               </div>
 
               {/* Categories Card */}
-              <div
-                className={`rounded-2xl border p-6 ${
-                  isDark
-                    ? "border-gray-700 bg-gray-900"
-                    : "border-gray-200 bg-white"
-                }`}
-              >
-                <h3 className={`text-lg font-bold mb-4 ${isDark ? "text-gray-100" : "text-gray-900"}`}>
+              <div className="rounded-2xl border border-border bg-card p-6">
+                <h3 className="text-lg font-bold mb-4 text-foreground">
                   Categories
                 </h3>
                 <div className="space-y-2">
@@ -158,11 +144,9 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
                     return (
                       <div
                         key={cat}
-                        className={`flex items-center justify-between py-2 border-b last:border-0 ${
-                          isDark ? "border-gray-700/50" : "border-gray-100"
-                        }`}
+                        className="flex items-center justify-between py-2 border-b last:border-0 border-border"
                       >
-                        <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-700"}`}>
+                        <span className="text-sm text-muted-foreground">
                           {cat}
                         </span>
                         <span

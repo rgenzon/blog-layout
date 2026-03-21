@@ -18,8 +18,7 @@ export function BlogPostLayout({
   newerPost,
   children,
 }: BlogPostLayoutProps) {
-  const { colors, brand, domain, theme } = config;
-  const isDark = theme === "dark";
+  const { colors, brand, domain } = config;
 
   const jsonLdGraph: object[] = [
     {
@@ -93,10 +92,6 @@ export function BlogPostLayout({
     "@graph": jsonLdGraph,
   };
 
-  const cssVars = {
-    "--blog-primary-light": `${colors.primary}30`,
-  } as React.CSSProperties;
-
   return (
     <>
       <script
@@ -104,30 +99,27 @@ export function BlogPostLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <article style={cssVars}>
+      <article>
         {/* Hero */}
-        <header
-          className="pt-32 pb-12 md:pt-40 md:pb-16"
-          style={{ backgroundColor: colors.background }}
-        >
+        <header className="pt-32 pb-12 md:pt-40 md:pb-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 md:px-8">
             {/* Breadcrumb */}
-            <nav className={`flex items-center gap-2 text-sm mb-8 ${isDark ? "text-gray-500" : "text-gray-500"}`}>
+            <nav className="flex items-center gap-2 text-sm mb-8 text-muted-foreground">
               <Link
                 href="/"
-                className={`transition-colors ${isDark ? "hover:text-gray-300" : "hover:text-gray-700"}`}
+                className="transition-colors hover:text-foreground"
               >
                 Home
               </Link>
               <span>/</span>
               <Link
                 href="/blog"
-                className={`transition-colors ${isDark ? "hover:text-gray-300" : "hover:text-gray-700"}`}
+                className="transition-colors hover:text-foreground"
               >
                 Blog
               </Link>
               <span>/</span>
-              <span className={`font-medium truncate ${isDark ? "text-gray-200" : "text-gray-900"}`}>
+              <span className="font-medium truncate text-foreground">
                 {post.title}
               </span>
             </nav>
@@ -152,28 +144,24 @@ export function BlogPostLayout({
               >
                 {post.category}
               </span>
-              <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+              <span className="text-sm text-muted-foreground">
                 {post.readingTime}
               </span>
-              <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+              <span className="text-sm text-muted-foreground">
                 &middot;
               </span>
-              <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+              <span className="text-sm text-muted-foreground">
                 {post.wordCount.toLocaleString()} words
               </span>
             </div>
 
             {/* Title */}
-            <h1
-              className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight ${
-                isDark ? "text-white" : "text-gray-900"
-              }`}
-            >
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-foreground">
               {post.title}
             </h1>
 
             {/* Description */}
-            <p className={`text-lg md:text-xl mb-8 max-w-3xl ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+            <p className="text-lg md:text-xl mb-8 max-w-3xl text-muted-foreground">
               {post.description}
             </p>
 
@@ -189,12 +177,12 @@ export function BlogPostLayout({
                   .join("")}
               </div>
               <div>
-                <div className={`font-medium text-sm ${isDark ? "text-gray-200" : "text-gray-900"}`}>
+                <div className="font-medium text-sm text-foreground">
                   {post.author.name}
                 </div>
                 <time
                   dateTime={post.publishedDate}
-                  className={`text-sm ${isDark ? "text-gray-500" : "text-gray-500"}`}
+                  className="text-sm text-muted-foreground"
                 >
                   {formatDate(post.publishedDate)}
                 </time>
@@ -204,37 +192,23 @@ export function BlogPostLayout({
         </header>
 
         {/* Content */}
-        <div className="py-12 md:py-16" style={{ backgroundColor: colors.background }}>
+        <div className="py-12 md:py-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 md:px-8">
-            <div
-              className={`rounded-2xl border p-6 md:p-10 lg:p-12 ${
-                isDark
-                  ? "bg-gray-900 border-gray-700"
-                  : "bg-white border-gray-200"
-              }`}
-            >
+            <div className="rounded-2xl border border-border bg-card p-6 md:p-10 lg:p-12">
               {children}
             </div>
 
             {/* Tags */}
             {post.tags.length > 0 && (
               <div className="mt-10">
-                <h3
-                  className={`text-sm font-semibold uppercase tracking-wider mb-3 ${
-                    isDark ? "text-gray-500" : "text-gray-500"
-                  }`}
-                >
+                <h3 className="text-sm font-semibold uppercase tracking-wider mb-3 text-muted-foreground">
                   Tags
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className={`text-sm px-3 py-1 rounded-full ${
-                        isDark
-                          ? "bg-gray-800 text-gray-400"
-                          : "bg-gray-100 text-gray-600"
-                      }`}
+                      className="text-sm px-3 py-1 rounded-full bg-muted text-muted-foreground"
                     >
                       {tag}
                     </span>
@@ -255,24 +229,14 @@ export function BlogPostLayout({
                       href={`/blog/${olderPost.slug}`}
                       className="group block"
                     >
-                      <div
-                        className={`rounded-2xl border p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between ${
-                          isDark
-                            ? "border-gray-700 bg-gray-900 hover:border-gray-600"
-                            : "border-gray-200 bg-white hover:border-[var(--blog-primary-light)]"
-                        }`}
-                      >
-                        <span className="text-xs text-gray-400 uppercase tracking-wider">
+                      <div className="rounded-2xl border border-border bg-card p-6 hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col justify-between">
+                        <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           &larr; Previous Article
                         </span>
-                        <h3
-                          className={`mt-3 font-bold transition-colors line-clamp-2 ${
-                            isDark ? "text-gray-100" : "text-gray-900"
-                          }`}
-                        >
+                        <h3 className="mt-3 font-bold transition-colors line-clamp-2 text-foreground">
                           {olderPost.title}
                         </h3>
-                        <p className="mt-2 text-sm text-gray-500">
+                        <p className="mt-2 text-sm text-muted-foreground">
                           {olderPost.readingTime}
                         </p>
                       </div>
@@ -285,24 +249,14 @@ export function BlogPostLayout({
                       href={`/blog/${newerPost.slug}`}
                       className="group block"
                     >
-                      <div
-                        className={`rounded-2xl border p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between text-right ${
-                          isDark
-                            ? "border-gray-700 bg-gray-900 hover:border-gray-600"
-                            : "border-gray-200 bg-white hover:border-[var(--blog-primary-light)]"
-                        }`}
-                      >
-                        <span className="text-xs text-gray-400 uppercase tracking-wider">
+                      <div className="rounded-2xl border border-border bg-card p-6 hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col justify-between text-right">
+                        <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           Next Article &rarr;
                         </span>
-                        <h3
-                          className={`mt-3 font-bold transition-colors line-clamp-2 ${
-                            isDark ? "text-gray-100" : "text-gray-900"
-                          }`}
-                        >
+                        <h3 className="mt-3 font-bold transition-colors line-clamp-2 text-foreground">
                           {newerPost.title}
                         </h3>
-                        <p className="mt-2 text-sm text-gray-500">
+                        <p className="mt-2 text-sm text-muted-foreground">
                           {newerPost.readingTime}
                         </p>
                       </div>

@@ -8,23 +8,18 @@ interface BlogPostCTAProps {
 }
 
 export function BlogPostCTA({ config }: BlogPostCTAProps) {
-  const { cta, colors, theme } = config;
-  const isDark = theme === "dark";
-  const ctaBg = isDark ? `${colors.primary}15` : `${colors.primary}10`;
-
-  const cssVars = {
-    "--blog-primary-light": `${colors.primary}30`,
-  } as React.CSSProperties;
+  const { cta, colors } = config;
+  const ctaBg = `${colors.primary}15`;
 
   return (
-    <section className="my-16 rounded-2xl overflow-hidden" style={{ backgroundColor: ctaBg, ...cssVars }}>
+    <section className="my-16 rounded-2xl overflow-hidden" style={{ backgroundColor: ctaBg }}>
       <div className="p-8 md:p-12">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
             {cta.heading}
           </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${isDark ? "text-gray-400" : "text-gray-600"}`}>
+          <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
             {cta.description}
           </p>
         </div>
@@ -39,7 +34,7 @@ export function BlogPostCTA({ config }: BlogPostCTAProps) {
               >
                 {stat.value}
               </div>
-              <div className={`text-xs md:text-sm ${isDark ? "text-gray-500" : "text-gray-500"}`}>
+              <div className="text-xs md:text-sm text-muted-foreground">
                 {stat.label}
               </div>
             </div>
@@ -51,11 +46,7 @@ export function BlogPostCTA({ config }: BlogPostCTAProps) {
           {cta.benefits.map((benefit) => (
             <span
               key={benefit}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${
-                isDark
-                  ? "bg-gray-800 text-gray-300 border border-gray-700"
-                  : "bg-white text-gray-700 border border-[var(--blog-primary-light)]"
-              }`}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-card text-foreground border border-border"
             >
               <svg
                 className="w-4 h-4 flex-shrink-0"

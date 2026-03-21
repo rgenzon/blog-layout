@@ -8,7 +8,6 @@ interface BlogContentProps {
 }
 
 export function BlogContent({ content, config }: BlogContentProps) {
-  const isDark = config.theme === "dark";
   const primary = config.colors.primary;
   const lines = content.split("\n");
   const elements: React.ReactNode[] = [];
@@ -26,7 +25,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
                 className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
                 style={{ backgroundColor: primary }}
               />
-              <span className={isDark ? "text-gray-300 leading-relaxed" : "text-gray-700 leading-relaxed"}>
+              <span className="text-foreground/80 leading-relaxed">
                 {parseInline(item)}
               </span>
             </li>
@@ -48,19 +47,15 @@ export function BlogContent({ content, config }: BlogContentProps) {
     elements.push(
       <div
         key={key++}
-        className={`overflow-x-auto my-8 rounded-xl border ${isDark ? "border-gray-700" : "border-gray-200"}`}
+        className="overflow-x-auto my-8 rounded-xl border border-border"
       >
         <table className="min-w-full border-collapse text-sm">
           <thead>
-            <tr className={isDark ? "bg-gray-800" : "bg-gray-50"}>
+            <tr className="bg-muted">
               {headerRow.map((cell, i) => (
                 <th
                   key={i}
-                  className={`text-left font-semibold px-4 py-3 border-b ${
-                    isDark
-                      ? "text-gray-100 border-gray-700"
-                      : "text-gray-900 border-gray-200"
-                  }`}
+                  className="text-left font-semibold px-4 py-3 border-b border-border text-foreground"
                 >
                   {parseInline(cell.trim())}
                 </th>
@@ -71,20 +66,12 @@ export function BlogContent({ content, config }: BlogContentProps) {
             {bodyRows.map((row, ri) => (
               <tr
                 key={ri}
-                className={
-                  isDark
-                    ? ri % 2 === 0 ? "bg-gray-900" : "bg-gray-800/50"
-                    : ri % 2 === 0 ? "bg-white" : "bg-gray-50/50"
-                }
+                className={ri % 2 === 0 ? "bg-card" : "bg-muted/50"}
               >
                 {row.map((cell, ci) => (
                   <td
                     key={ci}
-                    className={`px-4 py-3 border-b ${
-                      isDark
-                        ? "text-gray-300 border-gray-700/50"
-                        : "text-gray-700 border-gray-100"
-                    }`}
+                    className="px-4 py-3 border-b border-border/50 text-foreground/80"
                   >
                     {parseInline(cell.trim())}
                   </td>
@@ -118,7 +105,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
         parts.push(
           <strong
             key={`b-${match.index}`}
-            className={isDark ? "font-semibold text-gray-100" : "font-semibold text-gray-900"}
+            className="font-semibold text-foreground"
           >
             {match[1]}
           </strong>
@@ -156,7 +143,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
     if (trimmed === "---") {
       flushBuffers();
       elements.push(
-        <hr key={key++} className={isDark ? "my-10 border-gray-700" : "my-10 border-gray-200"} />
+        <hr key={key++} className="my-10 border-border" />
       );
       continue;
     }
@@ -193,9 +180,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
       elements.push(
         <h2
           key={key++}
-          className={`text-2xl md:text-3xl font-bold mt-12 mb-4 flex items-center gap-3 ${
-            isDark ? "text-white" : "text-gray-900"
-          }`}
+          className="text-2xl md:text-3xl font-bold mt-12 mb-4 flex items-center gap-3 text-foreground"
         >
           <span
             className="w-1 h-8 rounded-full flex-shrink-0"
@@ -214,9 +199,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
       elements.push(
         <h3
           key={key++}
-          className={`text-xl md:text-2xl font-semibold mt-8 mb-3 ${
-            isDark ? "text-gray-100" : "text-gray-900"
-          }`}
+          className="text-xl md:text-2xl font-semibold mt-8 mb-3 text-foreground"
         >
           {text}
         </h3>
@@ -246,10 +229,8 @@ export function BlogContent({ content, config }: BlogContentProps) {
       elements.push(
         <blockquote
           key={key++}
-          className={`my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed ${
-            isDark ? "bg-white/5 text-gray-300" : "text-gray-700"
-          }`}
-          style={{ borderLeft: `4px solid ${primary}`, ...(!isDark && { backgroundColor: `${primary}08` }) }}
+          className="my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed bg-muted/50 text-foreground/80"
+          style={{ borderLeft: `4px solid ${primary}` }}
         >
           {parseInline(text)}
         </blockquote>
@@ -262,9 +243,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
     elements.push(
       <p
         key={key++}
-        className={`leading-relaxed my-4 text-base md:text-lg ${
-          isDark ? "text-gray-300" : "text-gray-700"
-        }`}
+        className="leading-relaxed my-4 text-base md:text-lg text-foreground/80"
       >
         {parseInline(trimmed)}
       </p>
