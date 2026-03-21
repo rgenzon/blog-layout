@@ -5,15 +5,12 @@ import type { BlogConfig } from "../types";
  * as BlogContent. Pass these to MDXRemote's `components` prop.
  */
 export function getMdxComponents(config: BlogConfig) {
-  const isDark = config.theme === "dark";
   const primary = config.colors.primary;
 
   return {
     h2: ({ children, ...props }: React.ComponentProps<"h2">) => (
       <h2
-        className={`text-2xl md:text-3xl font-bold mt-12 mb-4 flex items-center gap-3 ${
-          isDark ? "text-white" : "text-gray-900"
-        }`}
+        className="text-2xl md:text-3xl font-bold mt-12 mb-4 flex items-center gap-3 text-foreground"
         {...props}
       >
         <span
@@ -26,9 +23,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     h3: ({ children, ...props }: React.ComponentProps<"h3">) => (
       <h3
-        className={`text-xl md:text-2xl font-semibold mt-8 mb-3 ${
-          isDark ? "text-gray-100" : "text-gray-900"
-        }`}
+        className="text-xl md:text-2xl font-semibold mt-8 mb-3 text-foreground"
         {...props}
       >
         {children}
@@ -37,9 +32,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     p: ({ children, ...props }: React.ComponentProps<"p">) => (
       <p
-        className={`leading-relaxed my-4 text-base md:text-lg ${
-          isDark ? "text-gray-300" : "text-gray-700"
-        }`}
+        className="leading-relaxed my-4 text-base md:text-lg text-foreground/80"
         {...props}
       >
         {children}
@@ -58,7 +51,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     strong: ({ children, ...props }: React.ComponentProps<"strong">) => (
       <strong
-        className={`font-semibold ${isDark ? "text-gray-100" : "text-gray-900"}`}
+        className="font-semibold text-foreground"
         {...props}
       >
         {children}
@@ -77,7 +70,7 @@ export function getMdxComponents(config: BlogConfig) {
           className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
           style={{ backgroundColor: primary }}
         />
-        <span className={isDark ? "text-gray-300 leading-relaxed" : "text-gray-700 leading-relaxed"}>
+        <span className="text-foreground/80 leading-relaxed">
           {children}
         </span>
       </li>
@@ -85,10 +78,8 @@ export function getMdxComponents(config: BlogConfig) {
 
     blockquote: ({ children, ...props }: React.ComponentProps<"blockquote">) => (
       <blockquote
-        className={`my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed ${
-          isDark ? "bg-white/5 text-gray-300" : "text-gray-700"
-        }`}
-        style={{ borderLeft: `4px solid ${primary}`, ...(!isDark && { backgroundColor: `${primary}08` }) }}
+        className="my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed bg-muted/50 text-foreground/80"
+        style={{ borderLeft: `4px solid ${primary}` }}
         {...props}
       >
         {children}
@@ -97,7 +88,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     hr: (props: React.ComponentProps<"hr">) => (
       <hr
-        className={isDark ? "my-10 border-gray-700" : "my-10 border-gray-200"}
+        className="my-10 border-border"
         {...props}
       />
     ),
@@ -113,11 +104,7 @@ export function getMdxComponents(config: BlogConfig) {
     ),
 
     table: ({ children, ...props }: React.ComponentProps<"table">) => (
-      <div
-        className={`overflow-x-auto my-8 rounded-xl border ${
-          isDark ? "border-gray-700" : "border-gray-200"
-        }`}
-      >
+      <div className="overflow-x-auto my-8 rounded-xl border border-border">
         <table className="min-w-full border-collapse text-sm" {...props}>
           {children}
         </table>
@@ -130,11 +117,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     th: ({ children, ...props }: React.ComponentProps<"th">) => (
       <th
-        className={`text-left font-semibold px-4 py-3 border-b ${
-          isDark
-            ? "text-gray-100 border-gray-700 bg-gray-800"
-            : "text-gray-900 border-gray-200 bg-gray-50"
-        }`}
+        className="text-left font-semibold px-4 py-3 border-b border-border bg-muted text-foreground"
         {...props}
       >
         {children}
@@ -143,11 +126,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     td: ({ children, ...props }: React.ComponentProps<"td">) => (
       <td
-        className={`px-4 py-3 border-b ${
-          isDark
-            ? "text-gray-300 border-gray-700/50"
-            : "text-gray-700 border-gray-100"
-        }`}
+        className="px-4 py-3 border-b border-border/50 text-foreground/80"
         {...props}
       >
         {children}
