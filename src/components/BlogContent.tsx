@@ -7,8 +7,7 @@ interface BlogContentProps {
   config: BlogConfig;
 }
 
-export function BlogContent({ content, config }: BlogContentProps) {
-  const primary = config.colors.primary;
+export function BlogContent({ content }: BlogContentProps) {
   const lines = content.split("\n");
   const elements: React.ReactNode[] = [];
   let listItems: string[] = [];
@@ -21,10 +20,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
         <ul key={key++} className="space-y-3 my-6">
           {listItems.map((item, i) => (
             <li key={i} className="flex items-start gap-3">
-              <span
-                className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                style={{ backgroundColor: primary }}
-              />
+              <span className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-primary" />
               <span className="text-foreground/80 leading-relaxed">
                 {parseInline(item)}
               </span>
@@ -115,8 +111,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
           <a
             key={`a-${match.index}`}
             href={match[3]}
-            className="font-medium underline underline-offset-2 transition-colors"
-            style={{ color: primary }}
+            className="font-medium underline underline-offset-2 transition-colors text-primary"
           >
             {match[2]}
           </a>
@@ -182,10 +177,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
           key={key++}
           className="text-2xl md:text-3xl font-bold mt-12 mb-4 flex items-center gap-3 text-foreground"
         >
-          <span
-            className="w-1 h-8 rounded-full flex-shrink-0"
-            style={{ backgroundColor: primary }}
-          />
+          <span className="w-1 h-8 rounded-full flex-shrink-0 bg-primary" />
           {text}
         </h2>
       );
@@ -229,8 +221,7 @@ export function BlogContent({ content, config }: BlogContentProps) {
       elements.push(
         <blockquote
           key={key++}
-          className="my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed bg-muted/50 text-foreground/80"
-          style={{ borderLeft: `4px solid ${primary}` }}
+          className="my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed bg-muted/50 text-foreground/80 border-l-4 border-primary"
         >
           {parseInline(text)}
         </blockquote>

@@ -63,6 +63,15 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
   // Derive badge background
   const badgeBg = `${colors.primary}20`;
 
+  // CTA palette
+  const c = cta.colors ?? {
+    background: colors.primaryDark,
+    foreground: "#ffffff",
+    muted: "rgba(255,255,255,0.6)",
+    buttonBg: "#ffffff",
+    buttonText: colors.primaryDark,
+  };
+
   return (
     <>
       <script
