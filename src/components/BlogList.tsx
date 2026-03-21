@@ -59,7 +59,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             href={`/blog/${featuredPost.slug}`}
             className="md:col-span-2 group block"
           >
-            <article className="rounded-2xl border border-border bg-card overflow-hidden hover:shadow-lg hover:border-input transition-all duration-300">
+            <article className="rounded-xl border border-border bg-card overflow-hidden card-highlight shadow-sm shadow-black/5 dark:shadow-black/30 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/50 hover:border-input transition-all duration-300">
               <div className="h-72 w-full overflow-hidden">
                 {featuredPost.coverImage ? (
                   <img
@@ -121,7 +121,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             href={`/blog/${post.slug}`}
             className="group block"
           >
-            <article className="rounded-2xl border border-border bg-card overflow-hidden hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col">
+            <article className="rounded-xl border border-border bg-card overflow-hidden card-highlight shadow-sm shadow-black/5 dark:shadow-black/30 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/50 hover:border-input transition-all duration-300 h-full flex flex-col">
               <div className="h-48 w-full overflow-hidden">
                 {post.coverImage ? (
                   <img

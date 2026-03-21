@@ -194,7 +194,7 @@ export function BlogPostLayout({
         {/* Content */}
         <div className="py-12 md:py-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 md:px-8">
-            <div className="rounded-2xl border border-border bg-card p-6 md:p-10 lg:p-12">
+            <div className="rounded-xl border border-border bg-card p-6 md:p-10 lg:p-12 card-highlight shadow-lg shadow-black/5 dark:shadow-black/40">
               {children}
             </div>
 
@@ -229,7 +229,7 @@ export function BlogPostLayout({
                       href={`/blog/${olderPost.slug}`}
                       className="group block"
                     >
-                      <div className="rounded-2xl border border-border bg-card p-6 hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col justify-between">
+                      <div className="rounded-xl border border-border bg-card p-6 card-highlight press-scale shadow-sm shadow-black/5 dark:shadow-black/30 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/50 hover:border-input transition-all duration-300 h-full flex flex-col justify-between">
                         <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           &larr; Previous Article
                         </span>
@@ -249,7 +249,7 @@ export function BlogPostLayout({
                       href={`/blog/${newerPost.slug}`}
                       className="group block"
                     >
-                      <div className="rounded-2xl border border-border bg-card p-6 hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col justify-between text-right">
+                      <div className="rounded-xl border border-border bg-card p-6 card-highlight press-scale shadow-sm shadow-black/5 dark:shadow-black/30 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/50 hover:border-input transition-all duration-300 h-full flex flex-col justify-between text-right">
                         <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           Next Article &rarr;
                         </span>

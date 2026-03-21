@@ -12,7 +12,7 @@ export function BlogPostCTA({ config }: BlogPostCTAProps) {
   const ctaBg = `${colors.primary}15`;
 
   return (
-    <section className="my-16 rounded-2xl overflow-hidden" style={{ backgroundColor: ctaBg }}>
+    <section className="my-16 rounded-xl overflow-hidden" style={{ backgroundColor: ctaBg }}>
       <div className="p-8 md:p-12">
         {/* Header */}
         <div className="text-center mb-8">

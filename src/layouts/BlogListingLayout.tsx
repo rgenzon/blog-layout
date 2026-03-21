@@ -100,7 +100,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
             <aside className="space-y-8">
               {/* CTA Card */}
               <div
-                className="rounded-2xl p-6 text-white"
+                className="rounded-xl p-6 text-white shadow-lg shadow-black/10 dark:shadow-black/40"
                 style={{
                   background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryDark} 100%)`,
                 }}
@@ -134,7 +134,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
               </div>
 
               {/* Categories Card */}
-              <div className="rounded-2xl border border-border bg-card p-6">
+              <div className="rounded-xl border border-border bg-card p-6 card-highlight shadow-sm shadow-black/5 dark:shadow-black/30">
                 <h3 className="text-lg font-bold mb-4 text-foreground">
                   Categories
                 </h3>
