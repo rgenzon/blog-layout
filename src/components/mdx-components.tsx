@@ -1,22 +1,17 @@
 import type { BlogConfig } from "../types";
 
 /**
- * Returns MDX component overrides that produce the exact same visual output
- * as BlogContent. Pass these to MDXRemote's `components` prop.
+ * Returns MDX component overrides that use the project's own design tokens
+ * via Tailwind semantic classes. Pass these to MDXRemote's `components` prop.
  */
-export function getMdxComponents(config: BlogConfig) {
-  const primary = config.colors.primary;
-
+export function getMdxComponents(_config: BlogConfig) {
   return {
     h2: ({ children, ...props }: React.ComponentProps<"h2">) => (
       <h2
         className="text-2xl md:text-3xl font-bold mt-12 mb-4 flex items-center gap-3 text-foreground"
         {...props}
       >
-        <span
-          className="w-1 h-8 rounded-full flex-shrink-0"
-          style={{ backgroundColor: primary }}
-        />
+        <span className="w-1 h-8 rounded-full flex-shrink-0 bg-primary" />
         {children}
       </h2>
     ),
@@ -41,8 +36,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     a: ({ children, ...props }: React.ComponentProps<"a">) => (
       <a
-        className="font-medium underline underline-offset-2 transition-colors"
-        style={{ color: primary }}
+        className="font-medium underline underline-offset-2 transition-colors text-primary"
         {...props}
       >
         {children}
@@ -66,10 +60,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     li: ({ children, ...props }: React.ComponentProps<"li">) => (
       <li className="flex items-start gap-3" {...props}>
-        <span
-          className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
-          style={{ backgroundColor: primary }}
-        />
+        <span className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-primary" />
         <span className="text-foreground/80 leading-relaxed">
           {children}
         </span>
@@ -78,8 +69,7 @@ export function getMdxComponents(config: BlogConfig) {
 
     blockquote: ({ children, ...props }: React.ComponentProps<"blockquote">) => (
       <blockquote
-        className="my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed bg-muted/50 text-foreground/80"
-        style={{ borderLeft: `4px solid ${primary}` }}
+        className="my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed bg-muted/50 text-foreground/80 border-l-4 border-primary"
         {...props}
       >
         {children}

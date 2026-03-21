@@ -13,8 +13,6 @@ interface BlogListProps {
 
 export function BlogList({ posts, categories, config }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState("All");
-  const primary = config.colors.primary;
-  const primaryDark = config.colors.primaryDark;
 
   const filteredPosts =
     activeCategory === "All"
@@ -23,9 +21,6 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
 
   const featuredPost = filteredPosts.find((p) => p.featured);
   const regularPosts = filteredPosts.filter((p) => !p.featured || p !== featuredPost);
-
-  // Derive a light tint from primary for badges
-  const badgeBg = `${primary}20`;
 
   return (
     <div>
@@ -37,14 +32,9 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             onClick={() => setActiveCategory(cat)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
               activeCategory === cat
-                ? "text-white"
+                ? "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:bg-accent"
             }`}
-            style={
-              activeCategory === cat
-                ? { backgroundColor: primary }
-                : undefined
-            }
           >
             {cat}
           </button>
@@ -59,7 +49,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             href={`/blog/${featuredPost.slug}`}
             className="md:col-span-2 group block"
           >
-            <article className="rounded-xl border border-border bg-card overflow-hidden card-highlight shadow-sm shadow-black/5 dark:shadow-black/30 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/50 hover:border-input transition-all duration-300">
+            <article className="rounded-xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg hover:border-input transition-all duration-300">
               <div className="h-72 w-full overflow-hidden">
                 {featuredPost.coverImage ? (
                   <img
@@ -69,13 +59,8 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
                     loading="lazy"
                   />
                 ) : (
-                  <div
-                    className="w-full h-full flex items-center justify-center p-8"
-                    style={{
-                      background: `linear-gradient(135deg, ${primary} 0%, ${primaryDark} 50%, ${primaryDark} 100%)`,
-                    }}
-                  >
-                    <p className="text-white/90 text-lg md:text-xl font-medium text-center max-w-lg leading-relaxed">
+                  <div className="w-full h-full flex items-center justify-center p-8 bg-primary">
+                    <p className="text-primary-foreground/90 text-lg md:text-xl font-medium text-center max-w-lg leading-relaxed">
                       {featuredPost.excerpt || featuredPost.description}
                     </p>
                   </div>
@@ -83,16 +68,10 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
               </div>
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-3">
-                  <span
-                    className="text-xs font-semibold px-3 py-1 rounded-full text-white"
-                    style={{ backgroundColor: primary }}
-                  >
+                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-primary text-primary-foreground">
                     Featured
                   </span>
-                  <span
-                    className="text-xs font-medium px-3 py-1 rounded-full"
-                    style={{ backgroundColor: badgeBg, color: primary }}
-                  >
+                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary">
                     {featuredPost.category}
                   </span>
                 </div>
@@ -121,7 +100,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             href={`/blog/${post.slug}`}
             className="group block"
           >
-            <article className="rounded-xl border border-border bg-card overflow-hidden card-highlight shadow-sm shadow-black/5 dark:shadow-black/30 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/50 hover:border-input transition-all duration-300 h-full flex flex-col">
+            <article className="rounded-xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col">
               <div className="h-48 w-full overflow-hidden">
                 {post.coverImage ? (
                   <img
@@ -131,23 +110,15 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
                     loading="lazy"
                   />
                 ) : (
-                  <div
-                    className="w-full h-full flex items-center justify-center p-6"
-                    style={{
-                      background: `linear-gradient(135deg, ${primary} 0%, ${primary} 50%, ${primaryDark} 100%)`,
-                    }}
-                  >
-                    <p className="text-white/80 text-sm text-center max-w-xs leading-relaxed">
+                  <div className="w-full h-full flex items-center justify-center p-6 bg-primary">
+                    <p className="text-primary-foreground/80 text-sm text-center max-w-xs leading-relaxed">
                       {post.excerpt || post.description}
                     </p>
                   </div>
                 )}
               </div>
               <div className="p-6 flex flex-col flex-1">
-                <span
-                  className="text-xs font-medium px-3 py-1 rounded-full self-start mb-3"
-                  style={{ backgroundColor: badgeBg, color: primary }}
-                >
+                <span className="text-xs font-medium px-3 py-1 rounded-full self-start mb-3 bg-primary/10 text-primary">
                   {post.category}
                 </span>
                 <h3 className="text-lg font-bold transition-colors mb-2 text-foreground">

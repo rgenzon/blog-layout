@@ -4,12 +4,14 @@ export interface BlogConfig {
     tagline: string;
     blogTitle: string;
   };
-  colors: {
+  /** @deprecated Colors are now inherited from project CSS variables (--color-primary, etc.). Kept for backward compatibility. */
+  colors?: {
     primary: string;
     primaryDark: string;
     background: string;
   };
-  theme: "light" | "dark";
+  /** @deprecated Theme is now inherited from the project's CSS. Kept for backward compatibility. */
+  theme?: "light" | "dark";
   cta: {
     heading: string;
     description: string;
@@ -17,14 +19,6 @@ export interface BlogConfig {
     buttonUrl: string;
     stats: Array<{ value: string; label: string }>;
     benefits: string[];
-    colors?: {
-      background: string;
-      foreground: string;
-      muted: string;
-      buttonBg: string;
-      buttonText: string;
-      buttonHoverBg?: string;
-    };
   };
   domain: string;
 }

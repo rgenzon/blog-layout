@@ -18,7 +18,7 @@ export function BlogPostLayout({
   newerPost,
   children,
 }: BlogPostLayoutProps) {
-  const { colors, brand, domain } = config;
+  const { brand, domain } = config;
 
   const jsonLdGraph: object[] = [
     {
@@ -138,10 +138,7 @@ export function BlogPostLayout({
 
             {/* Category + Read Time */}
             <div className="flex items-center gap-3 mb-6">
-              <span
-                className="text-xs font-semibold px-3 py-1 rounded-full text-white"
-                style={{ backgroundColor: colors.primary }}
-              >
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-primary text-primary-foreground">
                 {post.category}
               </span>
               <span className="text-sm text-muted-foreground">
@@ -167,10 +164,7 @@ export function BlogPostLayout({
 
             {/* Author + Date */}
             <div className="flex items-center gap-4">
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold text-sm"
-                style={{ backgroundColor: colors.primary }}
-              >
+              <div className="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm bg-primary text-primary-foreground">
                 {post.author.name
                   .split(" ")
                   .map((n) => n[0])
@@ -194,7 +188,7 @@ export function BlogPostLayout({
         {/* Content */}
         <div className="py-12 md:py-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 md:px-8">
-            <div className="rounded-xl border border-border bg-card p-6 md:p-10 lg:p-12 card-highlight shadow-lg shadow-black/5 dark:shadow-black/40">
+            <div className="rounded-xl border border-border bg-card p-6 md:p-10 lg:p-12 shadow-lg shadow-black/5 dark:shadow-black/40">
               {children}
             </div>
 
@@ -229,7 +223,7 @@ export function BlogPostLayout({
                       href={`/blog/${olderPost.slug}`}
                       className="group block"
                     >
-                      <div className="rounded-xl border border-border bg-card p-6 card-highlight press-scale shadow-sm shadow-black/5 dark:shadow-black/30 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/50 hover:border-input transition-all duration-300 h-full flex flex-col justify-between">
+                      <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col justify-between">
                         <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           &larr; Previous Article
                         </span>
@@ -249,7 +243,7 @@ export function BlogPostLayout({
                       href={`/blog/${newerPost.slug}`}
                       className="group block"
                     >
-                      <div className="rounded-xl border border-border bg-card p-6 card-highlight press-scale shadow-sm shadow-black/5 dark:shadow-black/30 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/50 hover:border-input transition-all duration-300 h-full flex flex-col justify-between text-right">
+                      <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col justify-between text-right">
                         <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           Next Article &rarr;
                         </span>
@@ -272,8 +266,7 @@ export function BlogPostLayout({
             <div className="mt-12 text-center">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 text-sm font-medium transition-colors"
-                style={{ color: colors.primary }}
+                className="inline-flex items-center gap-2 text-sm font-medium transition-colors text-primary"
               >
                 <svg
                   className="w-4 h-4"
