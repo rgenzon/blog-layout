@@ -71,7 +71,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
       />
 
       {/* Hero */}
-      <section className="pt-8 pb-12 md:pt-12 md:pb-16 bg-background">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="max-w-3xl">
             <span
@@ -99,24 +99,35 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
             {/* Sidebar */}
             <aside className="space-y-8">
               {/* CTA Card */}
-              <div className="relative overflow-hidden rounded-2xl bg-slate-950 p-6 text-white">
-                <div
-                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[200px] rounded-full opacity-[0.08] blur-3xl"
-                  style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.primaryDark})` }}
-                  aria-hidden="true"
-                />
-                <div className="relative">
-                  <h3 className="text-xl font-bold mb-3">
+              <div className="rounded-xl border border-border bg-card p-6 card-highlight shadow-sm shadow-black/5 dark:shadow-black/30 relative overflow-hidden">
+                {/* Dot pattern background */}
+                <div className="absolute inset-0 bg-dot-pattern [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black_20%,transparent_100%)]" />
+
+                <div className="relative z-10">
+                  <h3 className="text-lg font-extrabold mb-3 text-foreground tracking-tight">
                     {cta.heading}
                   </h3>
-                  <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+                  <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
                     {cta.description}
                   </p>
                   <a
                     href={cta.buttonUrl}
-                    className="inline-flex items-center rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-100"
+                    className="press-scale inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background font-semibold rounded-lg text-sm transition-all hover:opacity-90 shadow-lg shadow-foreground/10"
                   >
                     {cta.buttonText}
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
                   </a>
                 </div>
               </div>
