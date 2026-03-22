@@ -30,7 +30,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+            className={`blog-filter-btn px-4 py-2 text-sm font-medium transition-all duration-200 ${
               activeCategory === cat
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:bg-accent"
@@ -49,7 +49,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             href={`/blog/${featuredPost.slug}`}
             className="md:col-span-2 group block"
           >
-            <article className="rounded-xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg hover:border-input transition-all duration-300">
+            <article className="blog-card border border-border bg-card overflow-hidden hover:border-input transition-all duration-300">
               <div className="h-72 w-full overflow-hidden">
                 {featuredPost.coverImage ? (
                   <img
@@ -68,10 +68,10 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
               </div>
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-primary text-primary-foreground">
+                  <span className="blog-badge text-xs font-semibold px-3 py-1 bg-primary text-primary-foreground">
                     Featured
                   </span>
-                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary">
+                  <span className="blog-badge text-xs font-medium px-3 py-1 bg-primary/10 text-primary">
                     {featuredPost.category}
                   </span>
                 </div>
@@ -100,7 +100,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
             href={`/blog/${post.slug}`}
             className="group block"
           >
-            <article className="rounded-xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col">
+            <article className="blog-card border border-border bg-card overflow-hidden hover:border-input transition-all duration-300 h-full flex flex-col">
               <div className="h-48 w-full overflow-hidden">
                 {post.coverImage ? (
                   <img
@@ -118,7 +118,7 @@ export function BlogList({ posts, categories, config }: BlogListProps) {
                 )}
               </div>
               <div className="p-6 flex flex-col flex-1">
-                <span className="text-xs font-medium px-3 py-1 rounded-full self-start mb-3 bg-primary/10 text-primary">
+                <span className="blog-badge text-xs font-medium px-3 py-1 self-start mb-3 bg-primary/10 text-primary">
                   {post.category}
                 </span>
                 <h3 className="text-lg font-bold transition-colors mb-2 text-foreground">

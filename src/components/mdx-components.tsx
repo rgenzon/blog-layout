@@ -69,7 +69,7 @@ export function getMdxComponents(_config: BlogConfig) {
 
     blockquote: ({ children, ...props }: React.ComponentProps<"blockquote">) => (
       <blockquote
-        className="my-8 pl-6 py-4 rounded-r-xl italic leading-relaxed bg-muted/50 text-foreground/80 border-l-4 border-primary"
+        className="my-8 pl-6 py-4 italic leading-relaxed bg-muted/50 text-foreground/80 border-l-4 border-primary"
         {...props}
       >
         {children}
@@ -88,13 +88,13 @@ export function getMdxComponents(_config: BlogConfig) {
       <img
         alt={alt || ""}
         loading="lazy"
-        className="w-full rounded-xl my-8 object-cover"
+        className="w-full my-8 object-cover"
         {...props}
       />
     ),
 
     table: ({ children, ...props }: React.ComponentProps<"table">) => (
-      <div className="overflow-x-auto my-8 rounded-xl border border-border">
+      <div className="overflow-x-auto my-8 border border-border">
         <table className="min-w-full border-collapse text-sm" {...props}>
           {children}
         </table>

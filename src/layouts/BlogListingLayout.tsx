@@ -112,7 +112,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
               </div>
 
               {/* Categories Card */}
-              <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+              <div className="border border-border bg-card p-6">
                 <h3 className="text-lg font-bold mb-4 text-foreground">
                   Categories
                 </h3>
@@ -127,7 +127,7 @@ export function BlogListingLayout({ posts, categories, config }: BlogListingLayo
                         <span className="text-sm text-muted-foreground">
                           {cat}
                         </span>
-                        <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                        <span className="blog-badge text-xs font-medium px-2 py-0.5 bg-primary/10 text-primary">
                           {count}
                         </span>
                       </div>

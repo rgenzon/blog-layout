@@ -126,7 +126,7 @@ export function BlogPostLayout({
 
             {/* Cover Image Hero */}
             {post.coverImage && (
-              <div className="relative w-full aspect-[1200/630] rounded-xl overflow-hidden mb-8">
+              <div className="relative w-full aspect-[1200/630] overflow-hidden mb-8">
                 <img
                   src={post.coverImage}
                   alt={post.title}
@@ -138,7 +138,7 @@ export function BlogPostLayout({
 
             {/* Category + Read Time */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-primary text-primary-foreground">
+              <span className="blog-badge text-xs font-semibold px-3 py-1 bg-primary text-primary-foreground">
                 {post.category}
               </span>
               <span className="text-sm text-muted-foreground">
@@ -188,7 +188,7 @@ export function BlogPostLayout({
         {/* Content */}
         <div className="py-12 md:py-16 bg-background">
           <div className="max-w-4xl mx-auto px-4 md:px-8">
-            <div className="rounded-xl border border-border bg-card p-6 md:p-10 lg:p-12 shadow-lg shadow-black/5 dark:shadow-black/40">
+            <div className="border border-border bg-card p-6 md:p-10 lg:p-12">
               {children}
             </div>
 
@@ -202,7 +202,7 @@ export function BlogPostLayout({
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-sm px-3 py-1 rounded-full bg-muted text-muted-foreground"
+                      className="blog-badge text-sm px-3 py-1 bg-muted text-muted-foreground"
                     >
                       {tag}
                     </span>
@@ -223,7 +223,7 @@ export function BlogPostLayout({
                       href={`/blog/${olderPost.slug}`}
                       className="group block"
                     >
-                      <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col justify-between">
+                      <div className="blog-card border border-border bg-card p-6 hover:border-input transition-all duration-300 h-full flex flex-col justify-between">
                         <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           &larr; Previous Article
                         </span>
@@ -243,7 +243,7 @@ export function BlogPostLayout({
                       href={`/blog/${newerPost.slug}`}
                       className="group block"
                     >
-                      <div className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-lg hover:border-input transition-all duration-300 h-full flex flex-col justify-between text-right">
+                      <div className="blog-card border border-border bg-card p-6 hover:border-input transition-all duration-300 h-full flex flex-col justify-between text-right">
                         <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           Next Article &rarr;
                         </span>
