@@ -11,6 +11,9 @@ export { getMdxComponents } from "./components/mdx-components";
 export { BlogListingLayout } from "./layouts/BlogListingLayout";
 export { BlogPostLayout } from "./layouts/BlogPostLayout";
 
+// MDX options
+export { getMdxOptions } from "./mdx-options";
+
 // Utilities
 export {
   calculateReadingTime,
